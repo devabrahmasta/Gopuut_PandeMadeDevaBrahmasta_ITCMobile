@@ -32,6 +32,7 @@ class LandingPage extends StatelessWidget {
             ],
           )),
       body: Column(
+        
         children: [
           ListTile(
             title: Text('Rekomendasi resto di areamu',
@@ -47,18 +48,23 @@ class LandingPage extends StatelessWidget {
               ),
             ),
             trailing: ElevatedButton(
-                onPressed: () {},
-                child: Text('See All'),
-                style: ElevatedButton.styleFrom(
-                  primary: backgro,
-                )),
+              onPressed: () {},
+              child: Text('See All'),
+              style: ElevatedButton.styleFrom(
+                textStyle: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 10,
+                    color: Colors.green),
+                backgroundColor: Colors.green.shade100,
+              ),
+            ),
           ),
           Expanded(
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 15),
+                  padding: const EdgeInsets.fromLTRB(10, 10, 4, 15),
                   child: Stack(
                     children: [
                       Container(
@@ -95,7 +101,7 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 15),
+                  padding: const EdgeInsets.fromLTRB(4, 10, 4, 15),
                   child: Stack(
                     children: [
                       Container(
@@ -132,7 +138,7 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 15),
+                  padding: const EdgeInsets.fromLTRB(4, 10, 4, 15),
                   child: Stack(
                     children: [
                       Container(
@@ -177,6 +183,31 @@ class LandingPage extends StatelessWidget {
             flex: 1,
             child: ListView(
               children: [
+                ListTile(
+                  title: Text('Rekomendasi resto di areamu',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w900,
+                      )),
+                  subtitle: Text(
+                    'Kami pilihin yang enak dan dekat.',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12,
+                    ),
+                  ),
+                  trailing: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('See All'),
+                    style: ElevatedButton.styleFrom(
+                      textStyle: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 10,
+                          color: Colors.green),
+                      backgroundColor: Colors.green.shade100,
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 10, 20, 15),
                   child: Stack(
@@ -235,6 +266,13 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
               // scrollDirection: Axis.horizontal,
 
               // ListTile(
@@ -280,10 +318,3 @@ class LandingPage extends StatelessWidget {
               //   ),
 
               // ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
