@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:itc_mini_project/pages/second_page.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -17,58 +19,96 @@ class LandingPage extends StatelessWidget {
                 // margin: const EdgeInsets.only(left: 10, right: 5),
                 width: 50,
                 height: 50,
-                child: Image(
-                  image: AssetImage(
-                    'assets/logo_gojek.png',
-                    // 'assets/goput_removebg_preview.png',
-                  ),
-                ),
+                child: SvgPicture.network('assets/Gofood_logo.svg'),
               ),
               Text(
-                'gojax',
+                'gopuut',
                 style: GoogleFonts.poppins(fontWeight: FontWeight.w700)
-                    .copyWith(color: const Color.fromARGB(255, 30, 188, 69)),
+                    .copyWith(color: const Color.fromARGB(255, 0, 0, 0)),
               ),
             ],
           )),
       body: Column(
-        
         children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 5,
+                ),
+                TextField(
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                    hintText: 'Lagi mau mamam apa?',
+                    hintStyle: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    prefixIcon: const Icon(Icons.search),
+                    fillColor: Colors.grey.shade200,
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(color: Colors.green, width: 2),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
           ListTile(
             title: Text('Rekomendasi resto di areamu',
                 style: TextStyle(
                   fontSize: 15,
-                  fontWeight: FontWeight.w900,
+                  fontWeight: FontWeight.w600,
                 )),
             subtitle: Text(
               'Kami pilihin yang enak dan dekat.',
               style: TextStyle(
-                fontWeight: FontWeight.w300,
+                fontWeight: FontWeight.w400,
                 fontSize: 12,
               ),
             ),
             trailing: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SecondPage(),
+                    ));
+              },
               child: Text('See All'),
               style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 10,
-                    color: Colors.green),
-                backgroundColor: Colors.green.shade100,
+                textStyle: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                ),
+                backgroundColor: const Color.fromARGB(255, 223, 251, 224),
+                foregroundColor: const Color.fromARGB(255, 42, 109, 45),
               ),
             ),
           ),
+
+
+
+          //HORIZONTAL
           Expanded(
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 4, 15),
+                  padding: const EdgeInsets.fromLTRB(20, 10, 4, 15),
                   child: Stack(
                     children: [
                       Container(
-                        width: 200,
+                        width: 300,
                         height: 250,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -81,9 +121,14 @@ class LandingPage extends StatelessWidget {
                                 offset: Offset(2, 2),
                               ),
                             ]),
+                            
+                            child: Container(
+                              padding: EdgeInsets.only(left: 10, top: 250, right: 10),
+                              
+                            ),
                       ),
                       Container(
-                        width: 200,
+                        width: 300,
                         height: 150,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -184,27 +229,16 @@ class LandingPage extends StatelessWidget {
             child: ListView(
               children: [
                 ListTile(
-                  title: Text('Rekomendasi resto di areamu',
+                  title: Text('Yang enak enak buat kamu!',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w900,
                       )),
                   subtitle: Text(
-                    'Kami pilihin yang enak dan dekat.',
+                    'Makan enak, mood enak, jalanin hari jadi enak!',
                     style: TextStyle(
                       fontWeight: FontWeight.w300,
                       fontSize: 12,
-                    ),
-                  ),
-                  trailing: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('See All'),
-                    style: ElevatedButton.styleFrom(
-                      textStyle: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 10,
-                          color: Colors.green),
-                      backgroundColor: Colors.green.shade100,
                     ),
                   ),
                 ),
@@ -213,7 +247,7 @@ class LandingPage extends StatelessWidget {
                   child: Stack(
                     children: [
                       Container(
-                        width: 450,
+                        width: 550,
                         height: 150,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
