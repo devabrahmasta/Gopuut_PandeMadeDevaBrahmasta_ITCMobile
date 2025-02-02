@@ -16,7 +16,6 @@ class LandingPage extends StatelessWidget {
           title: Row(
             children: [
               SizedBox(
-                // margin: const EdgeInsets.only(left: 10, right: 5),
                 width: 50,
                 height: 50,
                 child: SvgPicture.network('assets/Gofood_logo.svg'),
@@ -101,6 +100,7 @@ class LandingPage extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
+                //horizontal pertama
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 10, 4, 15),
                   child: Stack(
@@ -114,9 +114,8 @@ class LandingPage extends StatelessWidget {
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black12,
-                                blurRadius: 8,
-                                // spreadRadius: 0,
-                                offset: Offset(2, 2),
+                                blurRadius: 5,
+                                offset: Offset(2, 0),
                               ),
                             ]),
                       ),
@@ -126,121 +125,363 @@ class LandingPage extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: const Color.fromARGB(255, 197, 85, 85),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/8b957b52-79fd-4fa5-bbc0-18f6feea9862_Go-Biz_20220122_162554.jpeg'),
+                              fit: BoxFit.fitWidth,
+                            ),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 8,
-                                // spreadRadius: 0,
-                                offset: Offset(2, 2),
+                                color: Colors.black38,
+                                blurRadius: 5,
+                                offset: Offset(2, 0),
                               )
                             ]),
                       ),
                       Column(
                         children: [
+                          SizedBox(width: 300, height: 160),
                           SizedBox(
-                            width: 300,
-                            height: 160),
-                          SizedBox(
-                              width: 270,
-                              height: 80,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('1.38 km • 30-40 min',  style: TextStyle(fontWeight: FontWeight.w100, fontSize: 12,),),
-                                  SizedBox(height:4,),
-                                  Text('Ayam Tulang Lunak Prestobox', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18,),),
-                                  SizedBox(height:6,),
-                                  Row(
-                                    children: [
-                                      Icon(Icons.star, color: Colors.orange, size: 15,),
-                                      SizedBox(width: 5,),
-                                      Text('4.9 • 83rb+ rating', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 12,),),
-                                    ],
-                                  )
-                                ],
-                              ),
+                            width: 270,
+                            height: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '1.38 km • 30-40 min',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w100,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  'Ayam Tulang Lunak Prestobox',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.orange,
+                                      size: 15,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      '4.9 • 83rb+ rating',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 12,
+                                        color: Colors.grey.shade700,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
                             ),
+                          ),
                         ],
                       ),
-                      
+                    ],
+                  ),
+                ),
+                //horizontal kedua
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(4, 10, 4, 15),
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: 300,
+                        height: 250,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(2, 0),
+                              ),
+                            ]),
+                      ),
+                      Container(
+                        width: 300,
+                        height: 150,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color.fromARGB(255, 197, 85, 85),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/e394f9e2-c2ca-482a-90f4-78a94e036df2_restaurant-image_1624596202139.jpg'),
+                              fit: BoxFit.fitWidth,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black38,
+                                blurRadius: 5,
+                                offset: Offset(2, 0),
+                              )
+                            ]),
+                      ),
+                      Column(
+                        children: [
+                          SizedBox(width: 300, height: 160),
+                          SizedBox(
+                            width: 270,
+                            height: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '0.85 km • 30-40 min',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w100,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  'Ayam Tulang Lunak Prestobox',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.orange,
+                                      size: 15,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      '4.9 • 83rb+ rating',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 12,
+                                        color: Colors.grey.shade700,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                //horizontal ketiga
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(4, 10, 4, 15),
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: 300,
+                        height: 250,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(2, 0),
+                              ),
+                            ]),
+                      ),
+                      Container(
+                        width: 300,
+                        height: 150,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color.fromARGB(255, 197, 85, 85),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/8b957b52-79fd-4fa5-bbc0-18f6feea9862_Go-Biz_20220122_162554.jpeg'),
+                              fit: BoxFit.fitWidth,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black38,
+                                blurRadius: 5,
+                                offset: Offset(2, 0),
+                              )
+                            ]),
+                      ),
+                      Column(
+                        children: [
+                          SizedBox(width: 300, height: 160),
+                          SizedBox(
+                            width: 270,
+                            height: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '1.38 km • 30-40 min',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w100,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  'Ayam Tulang Lunak Prestobox',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.orange,
+                                      size: 15,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      '4.9 • 83rb+ rating',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 12,
+                                        color: Colors.grey.shade700,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                //horizontal keempat
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(4, 10, 4, 15),
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: 300,
+                        height: 250,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(2, 0),
+                              ),
+                            ]),
+                      ),
+                      Container(
+                        width: 300,
+                        height: 150,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color.fromARGB(255, 197, 85, 85),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/8b957b52-79fd-4fa5-bbc0-18f6feea9862_Go-Biz_20220122_162554.jpeg'),
+                              fit: BoxFit.fitWidth,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black38,
+                                blurRadius: 5,
+                                offset: Offset(2, 0),
+                              )
+                            ]),
+                      ),
+                      Column(
+                        children: [
+                          SizedBox(width: 300, height: 160),
+                          SizedBox(
+                            width: 270,
+                            height: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '1.38 km • 30-40 min',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w100,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  'Ayam Tulang Lunak Prestobox',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.orange,
+                                      size: 15,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      '4.9 • 83rb+ rating',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 12,
+                                        color: Colors.grey.shade700,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                
 
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(4, 10, 4, 15),
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 200,
-                        height: 250,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 8,
-                                // spreadRadius: 0,
-                                offset: Offset(2, 2),
-                              ),
-                            ]),
-                      ),
-                      Container(
-                        width: 200,
-                        height: 150,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color.fromARGB(255, 197, 85, 85),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 8,
-                                // spreadRadius: 0,
-                                offset: Offset(2, 2),
-                              )
-                            ]),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(4, 10, 4, 15),
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 200,
-                        height: 250,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 8,
-                                // spreadRadius: 0,
-                                offset: Offset(2, 2),
-                              ),
-                            ]),
-                      ),
-                      Container(
-                        width: 200,
-                        height: 150,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color.fromARGB(255, 197, 85, 85),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 8,
-                                // spreadRadius: 0,
-                                offset: Offset(2, 2),
-                              )
-                            ]),
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
           ),
