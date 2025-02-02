@@ -96,8 +96,6 @@ class LandingPage extends StatelessWidget {
             ),
           ),
 
-
-
           //HORIZONTAL
           Expanded(
             child: ListView(
@@ -121,11 +119,6 @@ class LandingPage extends StatelessWidget {
                                 offset: Offset(2, 2),
                               ),
                             ]),
-                            
-                            child: Container(
-                              padding: EdgeInsets.only(left: 10, top: 250, right: 10),
-                              
-                            ),
                       ),
                       Container(
                         width: 300,
@@ -142,6 +135,35 @@ class LandingPage extends StatelessWidget {
                               )
                             ]),
                       ),
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: 300,
+                            height: 160),
+                          SizedBox(
+                              width: 270,
+                              height: 80,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('1.38 km • 30-40 min',  style: TextStyle(fontWeight: FontWeight.w100, fontSize: 12,),),
+                                  SizedBox(height:4,),
+                                  Text('Ayam Tulang Lunak Prestobox', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18,),),
+                                  SizedBox(height:6,),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.star, color: Colors.orange, size: 15,),
+                                      SizedBox(width: 5,),
+                                      Text('4.9 • 83rb+ rating', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 12,),),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
+                      
+
                     ],
                   ),
                 ),
