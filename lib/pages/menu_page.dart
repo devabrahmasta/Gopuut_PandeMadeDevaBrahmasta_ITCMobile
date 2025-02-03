@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatefulWidget {
@@ -11,52 +9,92 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> {
   int number = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: SizedBox(
-              width: 250,
-              child: Text(
-                'Ayam Tulang Lunak Prestobox',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Icon(Icons.thumb_up_rounded);
-                },
-                icon: Icon(Icons.thumb_up_outlined))
-          ],
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: SizedBox(
+            width: 250,
+            child: Text(
+              'Ayam Tulang Lunak Prestobox',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            )),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
           Column(
             children: [
-              Text('$number'),
-               OutlinedButton(
-                  onPressed: () {
-                    setState(() {
-                      number++;
-                    });
-                    log('$number');
-                  },
-                  child: Text('Tambah'),
-                  style: OutlinedButton.styleFrom(
-                    textStyle: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 12,
+              //STATEFULL BUTTON
+              Row(
+                children: [
+                  OutlinedButton(
+                    onPressed: () {
+                      setState(() {
+                        if (number > 0) {
+                          number--;
+                        }
+                      });
+                    },
+                    child: Icon(Icons.remove, color: Colors.green.shade900),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(color: Colors.green.shade900, width: 1),
+                      shape: CircleBorder(),
                     ),
-                    backgroundColor: const Color.fromARGB(255, 249, 249, 249),
-                    foregroundColor: const Color.fromARGB(255, 42, 109, 45),
                   ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text('$number'),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  OutlinedButton(
+                    onPressed: () {
+                      setState(() {
+                        number++;
+                      });
+                    },
+                    child: Icon(Icons.add, color: Colors.green.shade900),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(color: Colors.green.shade900, width: 1),
+                      shape: CircleBorder(),
+                    ),
+                  ),
+                ],
+              ),
+
+              OutlinedButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                          width: 500,
+                          height: 400,
+                          child: Column(
+                            children: [Text('Namanya')],
+                          ),
+                        );
+                      });
+                },
+                child: Text('Tambah'),
+                style: OutlinedButton.styleFrom(
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontSize: 12,
+                  ),
+                  backgroundColor: const Color.fromARGB(255, 249, 249, 249),
+                  foregroundColor: const Color.fromARGB(255, 42, 109, 45),
                 ),
-            
+              ),
             ],
-          )
-        ]));
+          ),
+        ],
+      ),
+    );
   }
 }
