@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class MenuPage extends StatefulWidget {
-  const MenuPage({super.key});
+class MieGacoanPage extends StatefulWidget {
+  const MieGacoanPage({super.key});
 
   @override
-  State<MenuPage> createState() => _MenuPageState();
+  State<MieGacoanPage> createState() => _MieGacoanPageState();
 }
 
-class _MenuPageState extends State<MenuPage> {
-  final List<String> _menuItems = [
+class _MieGacoanPageState extends State<MieGacoanPage> {
+  final List<String> _menu = [
     'Mie Gacoan Lv 1',
     'Mie Gacoan Lv 2',
     'Mie Gacoan Lv 3',
     'Mie Gacoan Lv 4',
     'Mie Gacoan Lv 5',
   ];
-  final List<String> _hargaItems = [
+  final List<String> _price = [
     '14.000',
     '14.000',
     '14.000',
@@ -24,12 +24,12 @@ class _MenuPageState extends State<MenuPage> {
     '14.000',
     '14.000',
   ];
-  late List<int> jumlahItems = List.filled(_menuItems.length, 0);
+  late List<int> totalItems = List.filled(_menu.length, 0);
 
   @override
   void initState() {
     super.initState();
-    jumlahItems = List.filled(_menuItems.length, 0);
+    totalItems = List.filled(_menu.length, 0);
   }
 
   @override
@@ -54,7 +54,7 @@ class _MenuPageState extends State<MenuPage> {
               ),
               background: Image(
                 image: NetworkImage(
-                  'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/8b957b52-79fd-4fa5-bbc0-18f6feea9862_Go-Biz_20220122_162554.jpeg',
+                  'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/4c0d3359-6625-4d3b-b5e4-710bdd850186_gobiz-dashboard-image_1730106768734.jpg',
                 ),
                 fit: BoxFit.cover,
               ),
@@ -103,7 +103,7 @@ class _MenuPageState extends State<MenuPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          _menuItems[index],
+                          _menu[index],
                           style: TextStyle(
                             fontWeight: FontWeight.w800,
                             fontSize: 18,
@@ -135,7 +135,7 @@ class _MenuPageState extends State<MenuPage> {
                           height: 30,
                         ),
                         Text(
-                          _hargaItems[index],
+                          _price[index],
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16,
@@ -155,8 +155,8 @@ class _MenuPageState extends State<MenuPage> {
                           OutlinedButton(
                             onPressed: () {
                               setState(() {
-                                if (jumlahItems[index] > 0) {
-                                  jumlahItems[index]--;
+                                if (totalItems[index] > 0) {
+                                  totalItems[index]--;
                                 }
                               });
                             },
@@ -173,14 +173,14 @@ class _MenuPageState extends State<MenuPage> {
                           SizedBox(
                             width: 5,
                           ),
-                          Text('${jumlahItems[index]}'),
+                          Text('${totalItems[index]}'),
                           SizedBox(
                             width: 5,
                           ),
                           OutlinedButton(
                             onPressed: () {
                               setState(() {
-                                jumlahItems[index]++;
+                                totalItems[index]++;
                               });
                             },
                             style: OutlinedButton.styleFrom(
@@ -203,7 +203,7 @@ class _MenuPageState extends State<MenuPage> {
               indent: 20,
               endIndent: 20,
             ),
-            itemCount: _menuItems.length,
+            itemCount: _menu.length,
           )
         ],
       ),
@@ -214,7 +214,7 @@ class _MenuPageState extends State<MenuPage> {
 
           // Expanded(
           //   child: ListView.separated(
-          //     itemCount: _menuItems.length,
+          //     itemCount: _menu.length,
           //     separatorBuilder: (BuildContext context, int index) =>
           //         const Divider( indent: 20, endIndent: 20,),
           //     itemBuilder: (BuildContext context, int index) {

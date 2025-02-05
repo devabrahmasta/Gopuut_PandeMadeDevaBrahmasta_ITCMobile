@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:itc_mini_project/pages/menu_page.dart';
+import 'package:itc_mini_project/pages/mie_gacoan_page.dart';
 
 class RekomendasiMenu extends StatelessWidget {
   const RekomendasiMenu({super.key});
@@ -31,7 +31,7 @@ class RekomendasiMenu extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const MenuPage(),
+                            builder: (context) => const MieGacoanPage(),
                           ));
                     },
                     child: Stack(

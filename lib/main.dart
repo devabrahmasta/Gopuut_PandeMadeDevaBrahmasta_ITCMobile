@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:itc_mini_project/pages/landing_page.dart';
+import 'package:itc_mini_project/pages/home_page.dart';
 
 void main() {
   runApp(const MiniProject());
@@ -12,7 +12,7 @@ class MiniProject extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: LandingPage(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
