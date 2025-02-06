@@ -1,74 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class AyamTulangLunakPage extends StatefulWidget {
-  const AyamTulangLunakPage({super.key});
+class McDonaldPage extends StatefulWidget {
+  const McDonaldPage({super.key});
 
   @override
-  State<AyamTulangLunakPage> createState() => _AyamTulangLunakPageState();
+  State<McDonaldPage> createState() => _McDonaldPageState();
 }
 
-class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
+class _McDonaldPageState extends State<McDonaldPage> {
   final List<Map<String, dynamic>> _menu = [
     {
-      "Name": "Ayam Goreng Loenak SUEGER",
-      "Desc":
-          "Nasi Ayam Goreng Rempah Tulang Lunak + Pilihan Sambal Khas Prestobox + Lalapan + Es Teh",
-      "Price": "36.000",
+      "Name": "PaNas 1 Ayam Spicy McD Black Pepper",
+      "Price": "43.000",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/11ae7c5c-5c39-46ef-a325-157c7c57c999_MAIN_014_20250121083820.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/293efca3-8bd5-4b29-bdd2-740948c08e5c_TPO-111462_1.jpg?auto=format",
     },
     {
-      "Name": "Ayam Bakar Loenak SUEGER",
-      "Desc":
-          "Pilihan Nasi + Ayam Bakar Bumbu Pedas Manis Tulang Lunak + Es Teh + Lalapan",
-      "Price": "36.000",
+      "Name": "PaNas 2 with Fries Ayam Spicy McD Black Pepper Large",
+      "Price": "69.500",
       "Image":
           "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/b98b4e24-553e-400f-bf42-5bf613c0db0f_MAIN_023_20250121002231.jpeg?auto=format",
     },
     {
-      "Name": "Ayam Rempah Tulang Loenak",
-      "Desc":
-          "Ayam goreng rempah tulang lunak (dada/paha) + Lalapan, (belum termasuk sambal)",
-      "Price": "25.000",
+      "Name": "Paket Hemat Big Mac, Medium",
+      "Price": "59.000",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/c68def4c-3db3-4d3f-828d-beab488bb19f_MAIN_002_20240903212343.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/fec62b3c-0451-4e2c-afa3-fb84e1f483ee_TPO-100324_1.jpg?auto=format",
     },
     {
-      "Name": "Ayam Bakar Pedas Manis",
-      "Desc":
-          "Ayam Bakar Bumbu Pedas Manis Tulang Lunak + Lalapan, Belum termasuk sambal",
-      "Price": "28.000",
+      "Name": "Big Mac",
+      "Price": "44.500",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/5c1ab0e3-5d2d-44a4-848c-3d27d430d9d9_MAIN_021_20250120234834.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/e0d2b1e0-0822-4e4e-a52f-83e76fe7c5d3_TPO-100323_1.jpg?auto=format",
     },
     {
-      "Name": "Nasi Jamur Tempe",
-      "Desc":
-          "Nasi + Jamur Crispy + Tempe (2 pcs) + Lalapan",
-      "Price": "18.000",
+      "Name": "Cheeseburger Deluxe",
+      "Price": "35.000",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/b9741358-a6bc-4b10-8287-216770241716_MAIN_017_20240903183656.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/7567aaef-0ca4-486a-a78b-dfce35d27e76_TPO-100317_1.jpg?auto=format",
     },
   ];
   final List<Map<String, dynamic>> _beverage = [
     {
-      "Name": "Es Teh",
-      "Price": "6.000",
+      "Name": "McFloat Fanta",
+      "Price": "12.000",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/969a3281-96a2-497d-bc0d-2c30cc970b48_MAIN_011_20240903213935.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/f658a196-fec5-4cad-a0cf-f4a06a997055_TPO-133190_0.jpg?auto=format",
     },
     {
-      "Name": "Es Jeruk",
-      "Price": "8.000",
+      "Name": "Iced Coffee Jelly Float",
+      "Price": "23.000",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/9301a5d8-80ce-4bd6-ac33-78368861ab9e_MAIN_012_20240903213516.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/e860e84a-ecf5-4cc7-85e2-a8a3a97e5007_TPO-134005_1.jpg?auto=format",
     },
     {
-      "Name": "Es Jeruk Nipis",
-      "Price": "8.000",
+      "Name": "Coke Float",
+      "Price": "12.000",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/4bfc3096-ccbc-4d01-b060-ee496eba1a50_MAIN_013_20240903213817.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/3c942fbb-1408-4fe7-95d1-4fd1f772f0c7_TPO-133191_0.jpg?auto=format",
     },
   ];
 
@@ -96,7 +86,7 @@ class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
             stretch: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                'Ayam Tulang Lunak Prestobox',
+                'McDonald\'s, Kaliurang',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -104,7 +94,7 @@ class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
               ),
               background: Image(
                 image: NetworkImage(
-                  'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/8b957b52-79fd-4fa5-bbc0-18f6feea9862_Go-Biz_20220122_162554.jpeg',
+                  'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/65bca3be-aec9-4b3a-b72a-a8866bd0f55d_brand-image_1735791800580.jpg?auto=format',
                 ),
                 fit: BoxFit.cover,
               ),
@@ -116,7 +106,7 @@ class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
               children: [
                 ListTile(
                   title: Text(
-                    'Paket Ayam',
+                    'Eksklusif Delivery',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -155,30 +145,19 @@ class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          menu["Name"],
-                          style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 18,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
                         SizedBox(
                           width: 300,
                           height: 50,
                           child: Text(
-                            menu["Desc"],
+                            menu["Name"],
                             style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 12,
-                              color: Colors.black38,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 18,
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 20,
                         ),
                         Row(
                           children: [
@@ -261,7 +240,7 @@ class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
               children: [
                 ListTile(
                   title: Text(
-                    'Aneka Minuman',
+                    'Drinks',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,

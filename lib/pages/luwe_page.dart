@@ -1,74 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class AyamTulangLunakPage extends StatefulWidget {
-  const AyamTulangLunakPage({super.key});
+class LuwePage extends StatefulWidget {
+  const LuwePage({super.key});
 
   @override
-  State<AyamTulangLunakPage> createState() => _AyamTulangLunakPageState();
+  State<LuwePage> createState() => _LuwePageState();
 }
 
-class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
+class _LuwePageState extends State<LuwePage> {
   final List<Map<String, dynamic>> _menu = [
     {
-      "Name": "Ayam Goreng Loenak SUEGER",
+      "Name": "Paket Hemat Rame",
       "Desc":
-          "Nasi Ayam Goreng Rempah Tulang Lunak + Pilihan Sambal Khas Prestobox + Lalapan + Es Teh",
-      "Price": "36.000",
+          "Paket Komplit Endog + Es Teh",
+      "Price": "36.800",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/11ae7c5c-5c39-46ef-a325-157c7c57c999_MAIN_014_20250121083820.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/9166c09a-2437-4791-a05d-178ca36d7968_Go-Biz_20221011_123235.jpeg?auto=format",
     },
     {
-      "Name": "Ayam Bakar Loenak SUEGER",
+      "Name": "Paket Endog Spesial",
       "Desc":
-          "Pilihan Nasi + Ayam Bakar Bumbu Pedas Manis Tulang Lunak + Es Teh + Lalapan",
-      "Price": "36.000",
+          "Sego + Endog + Saos + Kriuk",
+      "Price": "54.800",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/b98b4e24-553e-400f-bf42-5bf613c0db0f_MAIN_023_20250121002231.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/7013e56e-3ad5-478a-bd2e-bf34f39ab73f_Go-Biz_20230105_213906.jpeg?auto=format",
     },
     {
-      "Name": "Ayam Rempah Tulang Loenak",
+      "Name": "Paket Kenyang Banget",
       "Desc":
-          "Ayam goreng rempah tulang lunak (dada/paha) + Lalapan, (belum termasuk sambal)",
-      "Price": "25.000",
+          "1 Paket Komplit + 1 Snack + 1 Minuman",
+      "Price": "54.800",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/c68def4c-3db3-4d3f-828d-beab488bb19f_MAIN_002_20240903212343.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/7013e56e-3ad5-478a-bd2e-bf34f39ab73f_Go-Biz_20230105_213906.jpeg?auto=format",
     },
     {
-      "Name": "Ayam Bakar Pedas Manis",
+      "Name": "Paket Biasa Sayur Krispi",
       "Desc":
-          "Ayam Bakar Bumbu Pedas Manis Tulang Lunak + Lalapan, Belum termasuk sambal",
-      "Price": "28.000",
+          "Sego + Terong Krispi + Jamur Krispi + Kol Goreng + Saus",
+      "Price": "22.000",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/5c1ab0e3-5d2d-44a4-848c-3d27d430d9d9_MAIN_021_20250120234834.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/d555685b-1105-4cc2-8cc7-76571bfa1595_Go-Biz_20241002_221942.jpeg?auto=format",
     },
     {
-      "Name": "Nasi Jamur Tempe",
+      "Name": "Paket Hemat Sepi",
       "Desc":
-          "Nasi + Jamur Crispy + Tempe (2 pcs) + Lalapan",
-      "Price": "18.000",
+          "Paket Komplit Biasa + Es teh",
+      "Price": "34.400",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/b9741358-a6bc-4b10-8287-216770241716_MAIN_017_20240903183656.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/eb770ee3-b79e-4643-86cf-69d665118346_Go-Biz_20221011_123307.jpeg?auto=format",
     },
   ];
   final List<Map<String, dynamic>> _beverage = [
     {
-      "Name": "Es Teh",
-      "Price": "6.000",
+      "Name": "Sunny Haze",
+      "Price": "13.000",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/969a3281-96a2-497d-bc0d-2c30cc970b48_MAIN_011_20240903213935.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/079a29f3-b571-471e-b9f0-804472882701_Go-Biz_20210131_131830.jpeg?auto=format",
     },
     {
-      "Name": "Es Jeruk",
-      "Price": "8.000",
+      "Name": "Cloudy Haze",
+      "Price": "13.000",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/9301a5d8-80ce-4bd6-ac33-78368861ab9e_MAIN_012_20240903213516.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/088bc844-cc5a-4da5-9dd8-7e331812fc55_Go-Biz_20210131_132726.jpeg?auto=format",
     },
     {
-      "Name": "Es Jeruk Nipis",
-      "Price": "8.000",
+      "Name": "Lava Haze",
+      "Price": "13.000",
       "Image":
-          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/4bfc3096-ccbc-4d01-b060-ee496eba1a50_MAIN_013_20240903213817.jpeg?auto=format",
+          "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/e46cbf2e-af75-42b8-a2de-0c3d52b0dd46_Go-Biz_20210131_132806.jpeg?auto=format",
     },
   ];
 
@@ -96,7 +96,7 @@ class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
             stretch: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                'Ayam Tulang Lunak Prestobox',
+                'Luwe Ricebowl, Concat',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -104,7 +104,7 @@ class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
               ),
               background: Image(
                 image: NetworkImage(
-                  'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/8b957b52-79fd-4fa5-bbc0-18f6feea9862_Go-Biz_20220122_162554.jpeg',
+                  'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/7456dc26-bfd6-4e88-ac7b-487f2d7fdc2c_Go-Biz_20240314_075659.jpeg?auto=format',
                 ),
                 fit: BoxFit.cover,
               ),
@@ -116,7 +116,7 @@ class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
               children: [
                 ListTile(
                   title: Text(
-                    'Paket Ayam',
+                    'Rekomendasi',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -261,7 +261,7 @@ class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
               children: [
                 ListTile(
                   title: Text(
-                    'Aneka Minuman',
+                    'Minuman',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
