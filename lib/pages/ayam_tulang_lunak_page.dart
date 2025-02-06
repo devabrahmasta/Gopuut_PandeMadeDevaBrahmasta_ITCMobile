@@ -44,8 +44,7 @@ class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
     },
     {
       "Name": "Nasi Jamur Tempe",
-      "Desc":
-          "Nasi + Jamur Crispy + Tempe (2 pcs) + Lalapan",
+      "Desc": "Nasi + Jamur Crispy + Tempe (2 pcs) + Lalapan",
       "Price": "18.000",
       "Image":
           "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/b9741358-a6bc-4b10-8287-216770241716_MAIN_017_20240903183656.jpeg?auto=format",
@@ -89,6 +88,17 @@ class _AyamTulangLunakPageState extends State<AyamTulangLunakPage> {
         slivers: [
           //appBar
           SliverAppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              style: IconButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: CircleBorder(),
+                elevation: 3,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
             backgroundColor: Colors.green,
             pinned: true,
             centerTitle: false,

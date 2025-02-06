@@ -89,6 +89,17 @@ class _MieGacoanPageState extends State<MieGacoanPage> {
         slivers: [
           //appBar
           SliverAppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              style: IconButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: CircleBorder(),
+                elevation: 3,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
             backgroundColor: Colors.green,
             pinned: true,
             centerTitle: false,

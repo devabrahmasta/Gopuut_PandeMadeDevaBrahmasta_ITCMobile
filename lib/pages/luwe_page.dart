@@ -12,40 +12,35 @@ class _LuwePageState extends State<LuwePage> {
   final List<Map<String, dynamic>> _menu = [
     {
       "Name": "Paket Hemat Rame",
-      "Desc":
-          "Paket Komplit Endog + Es Teh",
+      "Desc": "Paket Komplit Endog + Es Teh",
       "Price": "36.800",
       "Image":
           "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/9166c09a-2437-4791-a05d-178ca36d7968_Go-Biz_20221011_123235.jpeg?auto=format",
     },
     {
       "Name": "Paket Endog Spesial",
-      "Desc":
-          "Sego + Endog + Saos + Kriuk",
+      "Desc": "Sego + Endog + Saos + Kriuk",
       "Price": "54.800",
       "Image":
           "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/7013e56e-3ad5-478a-bd2e-bf34f39ab73f_Go-Biz_20230105_213906.jpeg?auto=format",
     },
     {
       "Name": "Paket Kenyang Banget",
-      "Desc":
-          "1 Paket Komplit + 1 Snack + 1 Minuman",
+      "Desc": "1 Paket Komplit + 1 Snack + 1 Minuman",
       "Price": "54.800",
       "Image":
           "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/7013e56e-3ad5-478a-bd2e-bf34f39ab73f_Go-Biz_20230105_213906.jpeg?auto=format",
     },
     {
       "Name": "Paket Biasa Sayur Krispi",
-      "Desc":
-          "Sego + Terong Krispi + Jamur Krispi + Kol Goreng + Saus",
+      "Desc": "Sego + Terong Krispi + Jamur Krispi + Kol Goreng + Saus",
       "Price": "22.000",
       "Image":
           "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/d555685b-1105-4cc2-8cc7-76571bfa1595_Go-Biz_20241002_221942.jpeg?auto=format",
     },
     {
       "Name": "Paket Hemat Sepi",
-      "Desc":
-          "Paket Komplit Biasa + Es teh",
+      "Desc": "Paket Komplit Biasa + Es teh",
       "Price": "34.400",
       "Image":
           "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/eb770ee3-b79e-4643-86cf-69d665118346_Go-Biz_20221011_123307.jpeg?auto=format",
@@ -89,6 +84,17 @@ class _LuwePageState extends State<LuwePage> {
         slivers: [
           //appBar
           SliverAppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              style: IconButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: CircleBorder(),
+                elevation: 3,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
             backgroundColor: Colors.green,
             pinned: true,
             centerTitle: false,

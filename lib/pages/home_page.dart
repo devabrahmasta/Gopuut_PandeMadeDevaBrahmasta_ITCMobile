@@ -1,3 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider/carousel_controller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,10 +9,17 @@ import 'package:itc_mini_project/pages/luwe_page.dart';
 import 'package:itc_mini_project/pages/mc_donald_page.dart';
 import 'package:itc_mini_project/pages/mie_gacoan_page.dart';
 import 'package:itc_mini_project/pages/rekomendasi_menu.dart';
+import 'package:itc_mini_project/pages/search_bar_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
+  final List<String> myCarousel = [
+    'https://lelogama.go-jek.com/post_featured_image/promo-kesebelasan-Anniv_GoFood_Blog-Banner_1456x818_200rb.jpg',
+    'https://lelogama.go-jek.com/post_featured_image/GFDPLUS-FA-1-GENERALKV-H_rot_bakar_new_logo_gofood_plus-05.jpg',
+    'https://cdn-site.gojek.com/uploads/Go_Food_Promo_Maksimal_Calander_KV_02_56cb4e5aa3/Go_Food_Promo_Maksimal_Calander_KV_02_56cb4e5aa3.jpg',
+    'https://cdn-site.gojek.com/uploads/Promo_Maksimal_FS_Mealtimes_Jan_Blog_1456x818_dc9b04c3d4/Promo_Maksimal_FS_Mealtimes_Jan_Blog_1456x818_dc9b04c3d4.jpg',
+  ];
   final List<Widget> pages = [
     MieGacoanPage(),
     AyamTulangLunakPage(),
@@ -35,13 +45,13 @@ class HomePage extends StatelessWidget {
     {
       "Location": "1.24 km • 25-30 min",
       "Name": "Luwe Ricebowl, Concat",
-      "Rating": "5 • 82rb+ rating",
+      "Rating": "5.0 • 82rb+ rating",
       "Image":
           "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/7456dc26-bfd6-4e88-ac7b-487f2d7fdc2c_Go-Biz_20240314_075659.jpeg?auto=format",
     },
     {
       "Location": "1.38 km • 30-40 min",
-      "Name": "McDonald\"s, Kaliurang",
+      "Name": "McDonald's, Kaliurang",
       "Rating": "4.9 • 80rb+ rating",
       "Image":
           "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/65bca3be-aec9-4b3a-b72a-a8866bd0f55d_brand-image_1735791800580.jpg?auto=format",
@@ -72,40 +82,76 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         child: Column(
+          // List listCarousel = items["Images"];
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 5,
-                  ),
-                  //searchbar
-                  TextField(
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      hintText: 'Lagi mau mamam apa?',
-                      hintStyle: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      prefixIcon: const Icon(Icons.search),
-                      fillColor: Colors.grey.shade200,
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
+            CarouselSlider(
+              items: myCarousel.map((image) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.symmetric(horizontal: 5.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey,
+                        image: DecorationImage(
+                          image: NetworkImage(image),
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(color: Colors.green, width: 2),
+                    );
+                  },
+                );
+              }).toList(),
+              options: CarouselOptions(
+                autoPlay: true,
+                aspectRatio: 16 / 9,
+                viewportFraction: 0.8,
+                enlargeCenterPage: true,
+                // onPageChanged: (index, reason) {
+                //   setState(() {});
+                // },
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SearchBarPage(),
+                    ));
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 5,
+                    ),
+                    //searchbar
+                    TextField(
+                      enabled: false,
+                      textAlign: TextAlign.left,
+                      decoration: InputDecoration(
+                        hintText: 'Lagi mau mamam apa?',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade200,
+                          ),
+                        ),
+                        hintStyle: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        prefixIcon: const Icon(Icons.search),
+                        fillColor: Colors.grey.shade200,
+                        filled: true,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             ListTile(
@@ -126,12 +172,12 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const RekomendasiMenu(),
+                        builder: (context) => RekomendasiMenu(),
                       ));
                 },
                 style: FilledButton.styleFrom(
                   textStyle: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w800,
+                    fontWeight: FontWeight.w700,
                     fontSize: 12,
                   ),
                   backgroundColor: const Color.fromARGB(255, 223, 251, 224),
