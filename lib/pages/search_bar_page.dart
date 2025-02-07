@@ -11,7 +11,8 @@ class SearchBarPage extends StatefulWidget {
   State<SearchBarPage> createState() => _SearchBarPageState();
 }
 
-final List<Widget> pages = [
+class _SearchBarPageState extends State<SearchBarPage> {
+  final List<Widget> pages = [
     MieGacoanPage(),
     AyamTulangLunakPage(),
     LuwePage(),
@@ -49,7 +50,29 @@ final List<Widget> pages = [
     },
   ];
 
-class _SearchBarPageState extends State<SearchBarPage> {
+  List<Map<String, dynamic>> _foundItems = [];
+  @override
+  initState() {
+    _foundItems = items;
+    super.initState();
+  }
+
+  void _runFilter(String enterKeyword) {
+    List<Map<String, dynamic>> results = [];
+    if (enterKeyword.isEmpty) {
+      results = items;
+    } else {
+      results = items
+          .where((item) =>
+              item["Name"].toLowerCase().contains(enterKeyword.toLowerCase()))
+          .toList();
+    }
+
+    setState(() {
+      _foundItems = results;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +90,7 @@ class _SearchBarPageState extends State<SearchBarPage> {
           },
         ),
         title: TextField(
+          onChanged: (value) => _runFilter(value),
           enabled: true,
           textAlign: TextAlign.left,
           decoration: InputDecoration(
@@ -96,13 +120,12 @@ class _SearchBarPageState extends State<SearchBarPage> {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: 4,
+              itemCount: _foundItems.length,
               itemBuilder: (BuildContext context, int index) {
-                final item = items[index];
                 return Padding(
+                  key: ValueKey(_foundItems[index]["Name"]),
                   padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
                   child: InkWell(
-                    // customBorder: bord ,
                     borderRadius: BorderRadius.circular(20),
                     onTap: () {
                       Navigator.push(
@@ -135,7 +158,7 @@ class _SearchBarPageState extends State<SearchBarPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    item["Location"],
+                                    _foundItems[index]["Location"],
                                     style: TextStyle(
                                       fontWeight: FontWeight.w300,
                                       fontSize: 16,
@@ -145,7 +168,7 @@ class _SearchBarPageState extends State<SearchBarPage> {
                                     height: 4,
                                   ),
                                   Text(
-                                    item["Name"],
+                                    _foundItems[index]["Name"],
                                     style: TextStyle(
                                       fontWeight: FontWeight.w900,
                                       fontSize: 20,
@@ -165,7 +188,7 @@ class _SearchBarPageState extends State<SearchBarPage> {
                                         width: 5,
                                       ),
                                       Text(
-                                        item["Rating"],
+                                        _foundItems[index]["Rating"],
                                         style: TextStyle(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 14,
@@ -186,7 +209,8 @@ class _SearchBarPageState extends State<SearchBarPage> {
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.grey,
                               image: DecorationImage(
-                                image: NetworkImage(item["Image"]),
+                                image:
+                                    NetworkImage(_foundItems[index]["Image"]),
                                 fit: BoxFit.fitWidth,
                               ),
                               boxShadow: [

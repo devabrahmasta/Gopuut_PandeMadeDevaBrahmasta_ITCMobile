@@ -76,10 +76,10 @@ class _MieGacoanPageState extends State<MieGacoanPage> {
   late List<int> totalDimsum = List.filled(_dimsum.length, 0);
 
   @override
-  void initState() {
-    super.initState();
+  initState() {
     totalMenu = List.filled(_menu.length, 0);
     totalDimsum = List.filled(_dimsum.length, 0);
+    super.initState();
   }
 
   @override

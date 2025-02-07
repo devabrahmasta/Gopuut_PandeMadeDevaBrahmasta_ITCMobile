@@ -71,10 +71,10 @@ class _LuwePageState extends State<LuwePage> {
   late List<int> totalBeverage = List.filled(_beverage.length, 0);
 
   @override
-  void initState() {
-    super.initState();
+  initState() {
     totalMenu = List.filled(_menu.length, 0);
     totalBeverage = List.filled(_beverage.length, 0);
+    super.initState();
   }
 
   @override

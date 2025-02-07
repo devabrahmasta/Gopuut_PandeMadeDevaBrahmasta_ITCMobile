@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:carousel_slider/carousel_controller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,8 +14,9 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final List<String> myCarousel = [
-    'https://lelogama.go-jek.com/post_featured_image/promo-kesebelasan-Anniv_GoFood_Blog-Banner_1456x818_200rb.jpg',
-    'https://lelogama.go-jek.com/post_featured_image/GFDPLUS-FA-1-GENERALKV-H_rot_bakar_new_logo_gofood_plus-05.jpg',
+    'https://cdn-site.gojek.com/uploads/FA_GOFOOD_LOMBAMAKAN_In_App_Blog_Banner_1456x818_7ea4861c22/FA_GOFOOD_LOMBAMAKAN_In_App_Blog_Banner_1456x818_7ea4861c22.jpg',
+    'https://cdn-site.gojek.com/uploads/Surga_Liburan_Flash_Sale_Spesial_Gajian_In_App_1456x818_f4e9d25e86/Surga_Liburan_Flash_Sale_Spesial_Gajian_In_App_1456x818_f4e9d25e86.jpg',
+    'https://cdn-site.gojek.com/uploads/Go_Food_Disidak_B1_G1_OCT_Blog_1456x818_240d549b70/Go_Food_Disidak_B1_G1_OCT_Blog_1456x818_240d549b70.jpg',
     'https://cdn-site.gojek.com/uploads/Go_Food_Promo_Maksimal_Calander_KV_02_56cb4e5aa3/Go_Food_Promo_Maksimal_Calander_KV_02_56cb4e5aa3.jpg',
     'https://cdn-site.gojek.com/uploads/Promo_Maksimal_FS_Mealtimes_Jan_Blog_1456x818_dc9b04c3d4/Promo_Maksimal_FS_Mealtimes_Jan_Blog_1456x818_dc9b04c3d4.jpg',
   ];
@@ -82,37 +82,41 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         child: Column(
-          // List listCarousel = items["Images"];
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CarouselSlider(
-              items: myCarousel.map((image) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey,
-                        image: DecorationImage(
-                          image: NetworkImage(image),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+            SizedBox(
+              height: 5,
+            ),
+            Stack(
+              children: [
+                CarouselSlider(
+                  items: myCarousel.map((image) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.symmetric(horizontal: 1.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey,
+                            image: DecorationImage(
+                              image: NetworkImage(image),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
                     );
-                  },
-                );
-              }).toList(),
-              options: CarouselOptions(
-                autoPlay: true,
-                aspectRatio: 16 / 9,
-                viewportFraction: 0.8,
-                enlargeCenterPage: true,
-                // onPageChanged: (index, reason) {
-                //   setState(() {});
-                // },
-              ),
+                  }).toList(),
+                  options: CarouselOptions(
+                      enableInfiniteScroll: true,
+                      autoPlay: true,
+                      height: 200,
+                      viewportFraction: 0.9,
+                      enlargeCenterPage: true,
+                      enlargeFactor: 0.2),
+                ),
+              ],
             ),
             GestureDetector(
               onTap: () {
@@ -300,6 +304,7 @@ class HomePage extends StatelessWidget {
             ),
 
             const SizedBox(height: 5),
+            
             // vetikal
             const ListTile(
               title: Text('Yang enak enak buat kamu!',
@@ -316,7 +321,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 1000,
+              height: 165 * items.length.toDouble(),
               child: ListView.builder(
                   itemCount: items.length,
                   scrollDirection: Axis.vertical,
