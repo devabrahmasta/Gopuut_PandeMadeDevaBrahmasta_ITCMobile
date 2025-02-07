@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class MieGacoanPage extends StatefulWidget {
   const MieGacoanPage({super.key});
@@ -84,6 +83,7 @@ class _MieGacoanPageState extends State<MieGacoanPage> {
 
   @override
   Widget build(BuildContext context) {
+    final currentWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -121,7 +121,7 @@ class _MieGacoanPageState extends State<MieGacoanPage> {
               ),
             ),
           ),
-          //description resto
+          //description
           SliverToBoxAdapter(
             child: Column(
               children: [
@@ -140,21 +140,20 @@ class _MieGacoanPageState extends State<MieGacoanPage> {
           //listView food
           SliverList.separated(
             itemBuilder: (BuildContext context, int index) {
-              final menu = _menu[index];
               return Container(
                 padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                width: 400,
+                width: currentWidth * 0.6,
                 height: 150,
                 child: Row(
                   children: [
                     Container(
-                      width: 100,
-                      height: 100,
+                      width: 120,
+                      height: 120,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey,
                         image: DecorationImage(
-                          image: NetworkImage(menu["Image"]),
+                          image: NetworkImage(_menu[index]["Image"]),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -162,100 +161,115 @@ class _MieGacoanPageState extends State<MieGacoanPage> {
                     SizedBox(
                       width: 15,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          menu["Name"],
-                          style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 18,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 300,
-                          height: 50,
-                          child: Text(
-                            menu["Desc"],
+                    SizedBox(
+                      width: currentWidth * 0.55,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            _menu[index]["Name"],
                             style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 12,
-                              color: Colors.black38,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 16,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              menu["Price"],
+                          SizedBox(
+                            height: 5,
+                          ),
+                          SizedBox(
+                            width: currentWidth * 0.5,
+                            child: Text(
+                              _menu[index]["Desc"],
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
-                                fontSize: 16,
+                                fontSize: 12,
+                                color: Colors.black38,
                               ),
+                              maxLines: 3,
                             ),
-                            SizedBox(
-                              width: 150,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Row(
-                                children: [
-                                  OutlinedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        if (totalMenu[index] > 0) {
-                                          totalMenu[index]--;
-                                        }
-                                      });
-                                    },
-                                    style: OutlinedButton.styleFrom(
-                                      side: BorderSide(
-                                        color: Colors.green.shade900,
-                                        width: 1,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          SizedBox(
+                            width: currentWidth * 0.6,
+                            child: Row(
+                              children: [
+                                Text(
+                                  _menu[index]["Price"],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: currentWidth * 0.1,
+                                ),
+                                SizedBox(
+                                  child: Row(
+                                    children: [
+                                      OutlinedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            if (totalMenu[index] > 0) {
+                                              totalMenu[index]--;
+                                            }
+                                          });
+                                        },
+                                        style: OutlinedButton.styleFrom(
+                                          padding: EdgeInsets.zero,
+                                          minimumSize: Size(currentWidth * 0.08,
+                                              currentWidth * 0.08),
+                                          side: BorderSide(
+                                            color: Colors.green.shade900,
+                                            width: 1,
+                                          ),
+                                          shape: CircleBorder(),
+                                        ),
+                                        child: Icon(Icons.remove,
+                                            color: Colors.green.shade900),
                                       ),
-                                      shape: CircleBorder(),
-                                    ),
-                                    child: Icon(Icons.remove,
-                                        color: Colors.green.shade900),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        '${totalMenu[index]}',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.green.shade900),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      OutlinedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            totalMenu[index]++;
+                                          });
+                                        },
+                                        style: OutlinedButton.styleFrom(
+                                          padding: EdgeInsets.zero,
+                                          minimumSize: Size(currentWidth * 0.08,
+                                              currentWidth * 0.08),
+                                          side: BorderSide(
+                                              color: Colors.green.shade900,
+                                              width: 1),
+                                          shape: CircleBorder(),
+                                        ),
+                                        child: Icon(Icons.add,
+                                            color: Colors.green.shade900),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text('${totalMenu[index]}'),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  OutlinedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        totalMenu[index]++;
-                                      });
-                                    },
-                                    style: OutlinedButton.styleFrom(
-                                      side: BorderSide(
-                                          color: Colors.green.shade900,
-                                          width: 1),
-                                      shape: CircleBorder(),
-                                    ),
-                                    child: Icon(Icons.add,
-                                        color: Colors.green.shade900),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ],
+                          ),
+                        ],
+                      ),
                     ),
-
-                    //button
                   ],
                 ),
               );
@@ -285,21 +299,20 @@ class _MieGacoanPageState extends State<MieGacoanPage> {
           //listView dimsum
           SliverList.separated(
             itemBuilder: (BuildContext context, int index) {
-              final dimsum = _dimsum[index];
               return Container(
                 padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                width: 400,
+                width: currentWidth * 0.6,
                 height: 150,
                 child: Row(
                   children: [
                     Container(
-                      width: 100,
-                      height: 100,
+                      width: 120,
+                      height: 120,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey,
                         image: DecorationImage(
-                          image: NetworkImage(dimsum["Image"]),
+                          image: NetworkImage(_dimsum[index]["Image"]),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -307,85 +320,100 @@ class _MieGacoanPageState extends State<MieGacoanPage> {
                     SizedBox(
                       width: 15,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          dimsum["Name"],
-                          style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 18,
+                    SizedBox(
+                      width: currentWidth * 0.55,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            _dimsum[index]["Name"],
+                            style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 16,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              dimsum["Price"],
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 150,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Row(
-                                children: [
-                                  OutlinedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        if (totalDimsum[index] > 0) {
-                                          totalDimsum[index]--;
-                                        }
-                                      });
-                                    },
-                                    style: OutlinedButton.styleFrom(
-                                      side: BorderSide(
-                                        color: Colors.green.shade900,
-                                        width: 1,
+                          SizedBox(
+                            height: 40,
+                          ),
+                          SizedBox(
+                            width: currentWidth * 0.6,
+                            child: Row(
+                              children: [
+                                Text(
+                                  _dimsum[index]["Price"],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: currentWidth * 0.1,
+                                ),
+                                SizedBox(
+                                  child: Row(
+                                    children: [
+                                      OutlinedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            if (totalMenu[index] > 0) {
+                                              totalMenu[index]--;
+                                            }
+                                          });
+                                        },
+                                        style: OutlinedButton.styleFrom(
+                                          padding: EdgeInsets.zero,
+                                          minimumSize: Size(currentWidth * 0.08,
+                                              currentWidth * 0.08),
+                                          side: BorderSide(
+                                            color: Colors.green.shade900,
+                                            width: 1,
+                                          ),
+                                          shape: CircleBorder(),
+                                        ),
+                                        child: Icon(Icons.remove,
+                                            color: Colors.green.shade900),
                                       ),
-                                      shape: CircleBorder(),
-                                    ),
-                                    child: Icon(Icons.remove,
-                                        color: Colors.green.shade900),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        '${totalMenu[index]}',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.green.shade900),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      OutlinedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            totalMenu[index]++;
+                                          });
+                                        },
+                                        style: OutlinedButton.styleFrom(
+                                          padding: EdgeInsets.zero,
+                                          minimumSize: Size(currentWidth * 0.08,
+                                              currentWidth * 0.08),
+                                          side: BorderSide(
+                                              color: Colors.green.shade900,
+                                              width: 1),
+                                          shape: CircleBorder(),
+                                        ),
+                                        child: Icon(Icons.add,
+                                            color: Colors.green.shade900),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text('${totalDimsum[index]}'),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  OutlinedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        totalDimsum[index]++;
-                                      });
-                                    },
-                                    style: OutlinedButton.styleFrom(
-                                      side: BorderSide(
-                                          color: Colors.green.shade900,
-                                          width: 1),
-                                      shape: CircleBorder(),
-                                    ),
-                                    child: Icon(Icons.add,
-                                        color: Colors.green.shade900),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ],
+                          ),
+                        ],
+                      ),
                     ),
-
-                    //button
                   ],
                 ),
               );
@@ -396,7 +424,7 @@ class _MieGacoanPageState extends State<MieGacoanPage> {
               endIndent: 20,
             ),
             itemCount: _dimsum.length,
-          )
+          ),
         ],
       ),
     );

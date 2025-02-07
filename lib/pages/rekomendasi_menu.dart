@@ -47,6 +47,8 @@ class RekomendasiMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentWidth = MediaQuery.of(context).size.width;
+    final currentHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -65,120 +67,123 @@ class RekomendasiMenu extends StatelessWidget {
         backgroundColor: Colors.green,
         foregroundColor: Colors.white,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: ListView.builder(
-                physics: ClampingScrollPhysics(),
-                itemCount: 4,
-                itemBuilder: (BuildContext context, int index) {
-                  final item = items[index];
-                  return Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
-                    child: InkWell(
-                      // customBorder: bord ,
-                      borderRadius: BorderRadius.circular(20),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => pages[index],
-                            ));
-                      },
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: 450,
-                            height: 360,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black12,
-                                    blurRadius: 5,
-                                    offset: Offset(0, 2),
-                                  ),
-                                ]),
-                            child: Column(children: [
-                              SizedBox(width: 300, height: 260),
-                              SizedBox(
-                                width: 400,
+      body: Center(
+        child: Container(
+          width: currentWidth * 0.9,
+          child: ListView.builder(
+            itemCount: items.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                ),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => pages[index],
+                        ));
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: currentWidth * 0.9,
+                        height: currentHeight * 0.38,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(0, 2),
+                              ),
+                            ]),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(15, 210, 10, 0),
+                              child: SizedBox(
+                                width: currentWidth * 0.9,
                                 height: 100,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      item["Location"],
+                                      items[index]["Location"],
                                       style: TextStyle(
                                         fontWeight: FontWeight.w300,
-                                        fontSize: 16,
+                                        fontSize: 12,
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 4,
-                                    ),
                                     Text(
-                                      item["Name"],
+                                      items[index]["Name"],
                                       style: TextStyle(
                                         fontWeight: FontWeight.w900,
                                         fontSize: 20,
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 6,
+                                      height: currentHeight * 0.01,
                                     ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.star,
-                                          color: Colors.orange,
-                                          size: 15,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          item["Rating"],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 14,
-                                            color: Colors.black45,
+                                    SizedBox(
+                                      height: 20,
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.star,
+                                            color: Colors.orange,
+                                            size: 15,
                                           ),
-                                        ),
-                                      ],
-                                    )
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            items[index]["Rating"],
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 14,
+                                              color: Colors.black45,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
-                            ]),
-                          ),
-                          Container(
-                            width: 450,
-                            height: 250,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.grey,
-                                image: DecorationImage(
-                                  image: NetworkImage(item["Image"]),
-                                  fit: BoxFit.fitWidth,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black38,
-                                    blurRadius: 5,
-                                    offset: Offset(2, 0),
-                                  )
-                                ]),
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                }),
+                      Container(
+                        width: currentWidth * 0.9,
+                        height: 200,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.grey,
+                            image: DecorationImage(
+                              image: NetworkImage(items[index]["Image"]),
+                              fit: BoxFit.fitWidth,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black38,
+                                blurRadius: 5,
+                                offset: Offset(2, 0),
+                              )
+                            ]),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
-        ],
+        ),
       ),
     );
   }

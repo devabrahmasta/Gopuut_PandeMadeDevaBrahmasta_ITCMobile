@@ -12,7 +12,7 @@ class SearchBarPage extends StatefulWidget {
 }
 
 class _SearchBarPageState extends State<SearchBarPage> {
-  final List<Widget> pages = [
+  final List<Widget> _pages = [
     MieGacoanPage(),
     AyamTulangLunakPage(),
     LuwePage(),
@@ -75,6 +75,9 @@ class _SearchBarPageState extends State<SearchBarPage> {
 
   @override
   Widget build(BuildContext context) {
+    final currentWidth = MediaQuery.of(context).size.width;
+    final currentHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -102,6 +105,10 @@ class _SearchBarPageState extends State<SearchBarPage> {
             prefixIcon: const Icon(Icons.search),
             fillColor: Colors.grey.shade100,
             filled: true,
+            constraints: BoxConstraints(
+              maxHeight: currentHeight * 0.05,
+              maxWidth: currentWidth * 0.9,
+            ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
@@ -115,121 +122,251 @@ class _SearchBarPageState extends State<SearchBarPage> {
           ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: _foundItems.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
+      body: SizedBox(
+        height: 165 * items.length.toDouble(),
+        child: ListView.builder(
+          itemCount: _foundItems.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
+              children: [
+                Padding(
                   key: ValueKey(_foundItems[index]["Name"]),
-                  padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(20),
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => pages[index],
+                            builder: (context) => _pages[index],
                           ));
                     },
                     child: Stack(
                       children: [
                         Container(
-                          width: 450,
-                          height: 360,
+                          width: currentWidth * 0.9,
+                          height: 150,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(10),
                               color: const Color.fromARGB(255, 255, 255, 255),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black12,
-                                  blurRadius: 5,
-                                  offset: Offset(0, 2),
+                                  blurRadius: 8,
+                                  // spreadRadius: 0,
+                                  offset: Offset(2, 2),
                                 ),
                               ]),
-                          child: Column(children: [
-                            SizedBox(width: 300, height: 260),
-                            SizedBox(
-                              width: 400,
-                              height: 100,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    _foundItems[index]["Location"],
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(
-                                    _foundItems[index]["Name"],
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w900,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 6,
-                                  ),
-                                  Row(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 160,
+                                height: 150,
+                              ),
+                              SizedBox(
+                                width: currentWidth * 0.45,
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.orange,
-                                        size: 15,
+                                      SizedBox(
+                                        height: 15,
                                       ),
                                       SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        _foundItems[index]["Rating"],
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14,
-                                          color: Colors.black45,
+                                        width: 200,
+                                        child: Text(
+                                          _foundItems[index]["Location"],
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 12,
+                                          ),
                                         ),
                                       ),
-                                    ],
-                                  )
-                                ],
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        _foundItems[index]["Name"],
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.star,
+                                            color: Colors.orange,
+                                            size: 20,
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            _foundItems[index]["Rating"],
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12,
+                                              color: Colors.grey.shade700,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ]),
                               ),
-                            ),
-                          ]),
+                            ],
+                          ),
                         ),
                         Container(
-                          width: 450,
-                          height: 250,
+                          width: 150,
+                          height: 150,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.grey,
-                              image: DecorationImage(
-                                image:
-                                    NetworkImage(_foundItems[index]["Image"]),
-                                fit: BoxFit.fitWidth,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black38,
-                                  blurRadius: 5,
-                                  offset: Offset(2, 0),
-                                )
-                              ]),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                bottomLeft: Radius.circular(10)),
+                            color: Colors.grey,
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(_foundItems[index]["Image"])),
+                          ),
                         ),
                       ],
                     ),
                   ),
-                );
-              },
-            ),
-          ),
-        ],
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
 }
+
+// body: Center(
+//         child: Expanded(
+//           child: SizedBox(
+//             width: currentWidth * 0.9,
+//             child: ListView.builder(
+//               itemCount: _foundItems.length,
+//               itemBuilder: (BuildContext context, int index) {
+//                 return Padding(
+//                   key: ValueKey(_foundItems[index]["Name"]),
+//                   padding: const EdgeInsets.symmetric(
+//                     vertical: 10,
+//                     horizontal: 10,
+//                   ),
+//                   child: InkWell(
+//                     borderRadius: BorderRadius.circular(20),
+//                     onTap: () {
+//                       Navigator.push(
+//                           context,
+//                           MaterialPageRoute(
+//                             builder: (context) => pages[index],
+//                           ));
+//                     },
+//                     child: Stack(
+//                       children: [
+//                         Container(
+//                           width: currentWidth * 0.9,
+//                           height: currentHeight * 0.35,
+//                           decoration: BoxDecoration(
+//                               borderRadius: BorderRadius.circular(20),
+//                               color: const Color.fromARGB(255, 255, 255, 255),
+//                               boxShadow: [
+//                                 BoxShadow(
+//                                   color: Colors.black12,
+//                                   blurRadius: 5,
+//                                   offset: Offset(0, 2),
+//                                 ),
+//                               ]),
+//                           child: Column(children: [
+//                             Padding(
+//                               padding:
+//                                   const EdgeInsets.fromLTRB(10, 200, 10, 5),
+//                               child: SizedBox(
+//                                 width: 400,
+//                                 height: 100,
+//                                 child: Column(
+//                                   crossAxisAlignment: CrossAxisAlignment.start,
+//                                   children: [
+//                                     Text(
+//                                       _foundItems[index]["Location"],
+//                                       style: TextStyle(
+//                                         fontWeight: FontWeight.w300,
+//                                         fontSize: 15,
+//                                       ),
+//                                     ),
+//                                     SizedBox(
+//                                       height: 0,
+//                                     ),
+//                                     Text(
+//                                       _foundItems[index]["Name"],
+//                                       style: TextStyle(
+//                                         fontWeight: FontWeight.w900,
+//                                         fontSize: 20,
+//                                       ),
+//                                     ),
+//                                     SizedBox(
+//                                       height: 4,
+//                                     ),
+//                                     Row(
+//                                       children: [
+//                                         Icon(
+//                                           Icons.star,
+//                                           color: Colors.orange,
+//                                           size: 15,
+//                                         ),
+//                                         SizedBox(
+//                                           width: 5,
+//                                         ),
+//                                         Text(
+//                                           _foundItems[index]["Rating"],
+//                                           style: TextStyle(
+//                                             fontWeight: FontWeight.w700,
+//                                             fontSize: 14,
+//                                             color: Colors.black45,
+//                                           ),
+//                                         ),
+//                                       ],
+//                                     ),
+                                    
+//                                   ],
+//                                 ),
+//                               ),
+//                             ),
+//                           ]),
+//                         ),
+//                         Container(
+//                           width: 450,
+//                           height: 200,
+//                           decoration: BoxDecoration(
+//                               borderRadius: BorderRadius.circular(20),
+//                               color: Colors.grey,
+//                               image: DecorationImage(
+//                                 image:
+//                                     NetworkImage(_foundItems[index]["Image"]),
+//                                 fit: BoxFit.fitWidth,
+//                               ),
+//                               boxShadow: [
+//                                 BoxShadow(
+//                                   color: Colors.black38,
+//                                   blurRadius: 5,
+//                                   offset: Offset(2, 0),
+//                                 )
+//                               ]),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 );
+//               },
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
