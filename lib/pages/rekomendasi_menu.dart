@@ -104,10 +104,10 @@ class RekomendasiMenu extends StatelessWidget {
                         child: Column(
                           children: [
                             Padding(
-                              padding: EdgeInsets.fromLTRB(15, 210, 10, 0),
+                              padding: EdgeInsets.fromLTRB(15, currentHeight * 0.26, 10, 0),
                               child: SizedBox(
                                 width: currentWidth * 0.9,
-                                height: 100,
+                                height: currentHeight * 0.12,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -161,7 +161,7 @@ class RekomendasiMenu extends StatelessWidget {
                       ),
                       Container(
                         width: currentWidth * 0.9,
-                        height: 200,
+                        height: currentHeight * 0.25,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.grey,
