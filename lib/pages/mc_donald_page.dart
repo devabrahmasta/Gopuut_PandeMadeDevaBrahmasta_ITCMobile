@@ -74,6 +74,7 @@ class _McDonaldPageState extends State<McDonaldPage> {
   @override
   Widget build(BuildContext context) {
     final currentWidth = MediaQuery.of(context).size.width;
+    final currentHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -130,123 +131,214 @@ class _McDonaldPageState extends State<McDonaldPage> {
           //listView food
           SliverList.separated(
             itemBuilder: (BuildContext context, int index) {
-              return Container(
-                padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                width: currentWidth * 0.6,
-                height: 150,
-                child: Row(
-                  children: [
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey,
-                        image: DecorationImage(
-                          image: NetworkImage(_menu[index]["Image"]),
-                          fit: BoxFit.cover,
+              return InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container(
+                            height: currentHeight * 0.6,
+                            width: currentWidth * 1.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 10),
+                                  Container(
+                                    width: currentWidth * 0.9,
+                                    height: currentHeight * 0.3,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.grey,
+                                      image: DecorationImage(
+                                        image:
+                                            NetworkImage(_menu[index]["Image"]),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          _menu[index]["Name"],
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                        SizedBox(height: 5),
+                                        Text(
+                                          _menu[index]["Desc"],
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                        SizedBox(height: 10),
+                                        Text(
+                                          _menu[index]["Price"],
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                        SizedBox(height: 10),
+                                        SizedBox(
+                                          width: currentWidth * 0.9,
+                                          height: currentHeight * 0.05,
+                                          child: FilledButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                totalMenu[index]++;
+                                              });
+                                              Navigator.pop(
+                                                context,
+                                              );
+                                            },
+                                            style: FilledButton.styleFrom(
+                                              backgroundColor: Colors.green,
+                                              foregroundColor: Colors.white,
+                                            ),
+                                            child: Text('Tambah Pembelian', style: TextStyle(fontWeight: FontWeight.bold),),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ));
+                      });
+                },
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  width: currentWidth * 0.6,
+                  height: 150,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey,
+                          image: DecorationImage(
+                            image: NetworkImage(_menu[index]["Image"]),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    SizedBox(
-                      width: currentWidth * 0.55,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            _menu[index]["Name"],
-                            style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              fontSize: 16,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          SizedBox(
-                            width: currentWidth * 0.6,
-                            child: Row(
-                              children: [
-                                Text(
-                                  _menu[index]["Price"],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: currentWidth * 0.1,
-                                ),
-                                SizedBox(
-                                
-                                  child: Row(
-                                    children: [
-                                      OutlinedButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            if (totalMenu[index] > 0) {
-                                              totalMenu[index]--;
-                                            }
-                                          });
-                                        },
-                                        style: OutlinedButton.styleFrom(
-                                          padding: EdgeInsets.zero,
-                                          minimumSize: Size(currentWidth * 0.08,
-                                              currentWidth * 0.08),
-                                          side: BorderSide(
-                                            color: Colors.green.shade900,
-                                            width: 1,
-                                          ),
-                                          shape: CircleBorder(),
-                                        ),
-                                        child: Icon(Icons.remove,
-                                            color: Colors.green.shade900),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        '${totalMenu[index]}',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.green.shade900),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      OutlinedButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            totalMenu[index]++;
-                                          });
-                                        },
-                                        style: OutlinedButton.styleFrom(
-                                          padding: EdgeInsets.zero,
-                                          minimumSize: Size(currentWidth * 0.08,
-                                              currentWidth * 0.08),
-                                          side: BorderSide(
-                                              color: Colors.green.shade900,
-                                              width: 1),
-                                          shape: CircleBorder(),
-                                        ),
-                                        child: Icon(Icons.add,
-                                            color: Colors.green.shade900),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      SizedBox(
+                        width: 15,
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: currentWidth * 0.55,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              _menu[index]["Name"],
+                              style: TextStyle(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 16,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(
+                              height: 40,
+                            ),
+                            SizedBox(
+                              width: currentWidth * 0.6,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    _menu[index]["Price"],
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: currentWidth * 0.1,
+                                  ),
+                                  SizedBox(
+                                  
+                                    child: Row(
+                                      children: [
+                                        OutlinedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              if (totalMenu[index] > 0) {
+                                                totalMenu[index]--;
+                                              }
+                                            });
+                                          },
+                                          style: OutlinedButton.styleFrom(
+                                            padding: EdgeInsets.zero,
+                                            minimumSize: Size(currentWidth * 0.08,
+                                                currentWidth * 0.08),
+                                            side: BorderSide(
+                                              color: Colors.green.shade900,
+                                              width: 1,
+                                            ),
+                                            shape: CircleBorder(),
+                                          ),
+                                          child: Icon(Icons.remove,
+                                              color: Colors.green.shade900),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          '${totalMenu[index]}',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.green.shade900),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        OutlinedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              totalMenu[index]++;
+                                            });
+                                          },
+                                          style: OutlinedButton.styleFrom(
+                                            padding: EdgeInsets.zero,
+                                            minimumSize: Size(currentWidth * 0.08,
+                                                currentWidth * 0.08),
+                                            side: BorderSide(
+                                                color: Colors.green.shade900,
+                                                width: 1),
+                                            shape: CircleBorder(),
+                                          ),
+                                          child: Icon(Icons.add,
+                                              color: Colors.green.shade900),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },
@@ -275,124 +367,207 @@ class _McDonaldPageState extends State<McDonaldPage> {
           //listView Drinks
           SliverList.separated(
             itemBuilder: (BuildContext context, int index) {
-              return Container(
-                padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                width: currentWidth * 0.6,
-                height: 150,
-                child: Row(
-                  children: [
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey,
-                        image: DecorationImage(
-                          image: NetworkImage(_beverage[index]["Image"]),
-                          fit: BoxFit.cover,
+              return InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container(
+                            height: currentHeight * 0.6,
+                            width: currentWidth * 1.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 10),
+                                  Container(
+                                    width: currentWidth * 0.9,
+                                    height: currentHeight * 0.3,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.grey,
+                                      image: DecorationImage(
+                                        image:
+                                            NetworkImage(_beverage[index]["Image"]),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          _beverage[index]["Name"],
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                        SizedBox(height: 20),
+                                        Text(
+                                          _beverage[index]["Price"],
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                        SizedBox(height: 20),
+                                        SizedBox(
+                                          width: currentWidth * 0.9,
+                                          height: currentHeight * 0.05,
+                                          child: FilledButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                totalMenu[index]++;
+                                              });
+                                              Navigator.pop(
+                                                context,
+                                              );
+                                            },
+                                            style: FilledButton.styleFrom(
+                                              backgroundColor: Colors.green,
+                                              foregroundColor: Colors.white,
+                                            ),
+                                            child: Text('Tambah Pembelian', style: TextStyle(fontWeight: FontWeight.bold),),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ));
+                      });
+                },
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  width: currentWidth * 0.6,
+                  height: 150,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey,
+                          image: DecorationImage(
+                            image: NetworkImage(_beverage[index]["Image"]),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    SizedBox(
-                      width: currentWidth * 0.55,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            _beverage[index]["Name"],
-                            style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              fontSize: 16,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          SizedBox(
-                            width: currentWidth * 0.6,
-                            child: Row(
-                              children: [
-                                Text(
-                                  _beverage[index]["Price"],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: currentWidth * 0.1,
-                                ),
-                                SizedBox(
-                                  child: Row(
-                                    children: [
-                                      OutlinedButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            if (totalMenu[index] > 0) {
-                                              totalMenu[index]--;
-                                            }
-                                          });
-                                        },
-                                        style: OutlinedButton.styleFrom(
-                                          padding: EdgeInsets.zero,
-                                          minimumSize: Size(currentWidth * 0.08,
-                                              currentWidth * 0.08),
-                                          side: BorderSide(
-                                            color: Colors.green.shade900,
-                                            width: 1,
-                                          ),
-                                          shape: CircleBorder(),
-                                        ),
-                                        child: Icon(Icons.remove,
-                                            color: Colors.green.shade900),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        '${totalMenu[index]}',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.green.shade900),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      OutlinedButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            totalMenu[index]++;
-                                          });
-                                        },
-                                        style: OutlinedButton.styleFrom(
-                                          padding: EdgeInsets.zero,
-                                          minimumSize: Size(currentWidth * 0.08,
-                                              currentWidth * 0.08),
-                                          side: BorderSide(
-                                              color: Colors.green.shade900,
-                                              width: 1),
-                                          shape: CircleBorder(),
-                                        ),
-                                        child: Icon(Icons.add,
-                                            color: Colors.green.shade900),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      SizedBox(
+                        width: 15,
                       ),
-                    ),
-
-                    //button
-                  ],
+                      SizedBox(
+                        width: currentWidth * 0.55,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              _beverage[index]["Name"],
+                              style: TextStyle(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 16,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(
+                              height: 40,
+                            ),
+                            SizedBox(
+                              width: currentWidth * 0.6,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    _beverage[index]["Price"],
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: currentWidth * 0.1,
+                                  ),
+                                  SizedBox(
+                                    child: Row(
+                                      children: [
+                                        OutlinedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              if (totalMenu[index] > 0) {
+                                                totalMenu[index]--;
+                                              }
+                                            });
+                                          },
+                                          style: OutlinedButton.styleFrom(
+                                            padding: EdgeInsets.zero,
+                                            minimumSize: Size(currentWidth * 0.08,
+                                                currentWidth * 0.08),
+                                            side: BorderSide(
+                                              color: Colors.green.shade900,
+                                              width: 1,
+                                            ),
+                                            shape: CircleBorder(),
+                                          ),
+                                          child: Icon(Icons.remove,
+                                              color: Colors.green.shade900),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          '${totalMenu[index]}',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.green.shade900),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        OutlinedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              totalMenu[index]++;
+                                            });
+                                          },
+                                          style: OutlinedButton.styleFrom(
+                                            padding: EdgeInsets.zero,
+                                            minimumSize: Size(currentWidth * 0.08,
+                                                currentWidth * 0.08),
+                                            side: BorderSide(
+                                                color: Colors.green.shade900,
+                                                width: 1),
+                                            shape: CircleBorder(),
+                                          ),
+                                          child: Icon(Icons.add,
+                                              color: Colors.green.shade900),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                
+                      //button
+                    ],
+                  ),
                 ),
               );
             },
